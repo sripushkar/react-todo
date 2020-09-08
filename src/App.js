@@ -5,20 +5,34 @@ import { Typography } from '@material-ui/core';
 import Todos from './components/Todos';
 
 
-function App() {
+class App extends React.Component {
   state = {
     todos: [
       {
-        "Take out the trash": 
+        id: 1,
+        title: "Take out the trash",
+        completed: false
+      },
+      {
+        id: 2,
+        title: "Walk the dog",
+        completed: false
+      },
+      {
+        id: 3,
+        title: "Cook Dinner",
+        completed: false
       }
     ]
   }
-  return (
-    <div className="App">
-      <Typography variant="h1">Hello</Typography>
-      <Todos />
-    </div>
-  );
+  render(){
+    return (
+      <div className="App">
+        <Typography variant="h1">Hello</Typography>
+        <Todos todos={this.state.todos} />
+      </div>
+    );
+  }
 }
 
 export default App;

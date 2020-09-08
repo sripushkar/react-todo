@@ -3,12 +3,12 @@ import 'fontsource-roboto';
 import { Button } from '@material-ui/core';
 
 
-function Todos() {
-  return (
-    <div className="App">
-      <Button variant="contained" color="primary">Click Me</Button>
-    </div>
-  );
+class Todos extends React.Component {
+    render(){
+        return (
+            this.props.todos.map((todo)=> <TodoItem />)
+        );
+    }
 }
 
 export default Todos;
