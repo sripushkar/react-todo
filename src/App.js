@@ -1,9 +1,8 @@
-import React from 'react';
-import './App.css';
-import 'fontsource-roboto';
-import { Typography } from '@material-ui/core';
-import Todos from './components/Todos';
-
+import React from "react";
+import "./App.css";
+import "fontsource-roboto";
+import { Typography, Container } from "@material-ui/core";
+import Todos from "./components/Todos";
 
 class App extends React.Component {
   state = {
@@ -11,26 +10,40 @@ class App extends React.Component {
       {
         id: 1,
         title: "Take out the trash",
-        completed: false
+        completed: false,
       },
       {
         id: 2,
         title: "Walk the dog",
-        completed: false
+        completed: false,
       },
       {
         id: 3,
         title: "Cook Dinner",
-        completed: false
-      }
-    ]
-  }
-  render(){
+        completed: false,
+      },
+    ],
+  };
+
+  markComplete = (id) => {
+    this.setState({
+      todos: this.state.todos.map((todo) => {
+        if (todo.id === id) {
+          todo.completed = !todo.completed;
+        }
+        return todo
+      })
+    });
+  };
+
+  render() {
     return (
-      <div className="App">
-        <Typography variant="h1">Hello</Typography>
-        <Todos todos={this.state.todos} />
-      </div>
+      <Container>
+        <div className="App">
+          <Typography variant="h2">Todo List</Typography>
+          <Todos todos={this.state.todos} markComplete={this.markComplete} />
+        </div>
+      </Container>
     );
   }
 }
