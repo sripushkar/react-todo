@@ -1,24 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import 'fontsource-roboto';
+import { Typography } from '@material-ui/core';
+import Todos from './components/Todos';
+
 
 function App() {
+  state = {
+    todos: [
+      {
+        "Take out the trash": 
+      }
+    ]
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Typography variant="h1">Hello</Typography>
+      <Todos />
     </div>
   );
 }
