@@ -3,6 +3,7 @@ import "./App.css";
 import "fontsource-roboto";
 import { Typography, Container } from "@material-ui/core";
 import Todos from "./components/Todos";
+import AddTodo from "./components/AddTodo"
 
 class App extends React.Component {
   state = {
@@ -36,12 +37,30 @@ class App extends React.Component {
     });
   };
 
+  delTodo = id => {
+    this.setState({
+      todos: [...this.state.todos.filter(todo => todo.id !== id)]
+    })
+  }
+
+  addTodo = title => {
+    const newTodo = {
+        id: this.state.todos[this.state.todos.length - 1].id + 1,
+        title,
+        completed: false
+    }
+    this.setState({
+      todos: [...this.state.todos, newTodo]
+    })
+  }
+
   render() {
     return (
       <Container>
         <div className="App">
           <Typography variant="h2">Todo List</Typography>
-          <Todos todos={this.state.todos} markComplete={this.markComplete} />
+          <Todos todos={this.state.todos} markComplete={this.markComplete} delTodo={this.delTodo}/>
+          <AddTodo addTodo={this.addTodo}/>
         </div>
       </Container>
     );
