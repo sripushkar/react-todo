@@ -1,9 +1,12 @@
 import React from "react";
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import "./App.css";
 import "fontsource-roboto";
 import { Typography, Container } from "@material-ui/core";
 import Todos from "./components/Todos";
 import AddTodo from "./components/AddTodo"
+import Header from "./components/Header"
+import About from "./components/pages/About"
 
 class App extends React.Component {
   state = {
@@ -56,13 +59,20 @@ class App extends React.Component {
 
   render() {
     return (
-      <Container>
-        <div className="App">
-          <Typography variant="h2">Todo List</Typography>
-          <Todos todos={this.state.todos} markComplete={this.markComplete} delTodo={this.delTodo}/>
-          <AddTodo addTodo={this.addTodo}/>
-        </div>
-      </Container>
+      <Router>
+        <Container>
+          <div className="App">
+            <Route exact path="/" render={props => (
+              <React.Fragment>
+                <Header />
+                <Todos todos={this.state.todos} markComplete={this.markComplete} delTodo={this.delTodo}/>
+                <AddTodo addTodo={this.addTodo}/>
+              </React.Fragment>
+            )}/>
+            <Route path="/about" component={About}/>
+          </div>
+        </Container>
+      </Router>
     );
   }
 }
